@@ -1,47 +1,46 @@
-$(document).ready(function (){
+$(document).ready(function () {
+    // Text animation for elements with class 'text'
     $('.text').textillate({
         loop: true,
         sync: true,
-        in:{
+        in: {
             effect: "bounceIn",
         },
-        out:{
+        out: {
             effect: "bounceOut",
         },
     });
 
-    // siri configuration
-
+    // SiriWave configuration
     var siriWave = new SiriWave({
-    container: document.getElementById("siri-container"),
-    width: 640,
-    height: 200,
-    style:"ios9",
-    amplitude: "1",	
-    speed:"0.30",
-    autostart: true
+        container: document.getElementById("siri-container"),
+        width: 640,
+        height: 200,
+        style: "ios9",
+        amplitude: 1,
+        speed: 0.30,
+        autostart: true
     });
 
-    // siri message animation
-    $('.text').textillate({
+    // Siri message animation
+    $('.siri-message').textillate({
         loop: true,
         sync: true,
-        in:{
+        in: {
             effect: "fadeInUp",
             sync: true
         },
-        out:{
+        out: {
             effect: "fadeOutUp",
             sync: true
-
         },
     });
 
-
-    // mic button click event
-    $(selector).click(function (e) { 
-        e.preventDefault();
-        
-    });    
-
+    // Mic button click event
+    $("#MicBtn").click(function () {
+        eel.playAssistantSound()
+        $("#Oval").attr("hidden", true);
+        $("#SiriWave").attr("hidden", false);
+        eel.takecommand()()
+    });
 });
