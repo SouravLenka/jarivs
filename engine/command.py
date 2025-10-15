@@ -10,6 +10,7 @@ def speak(text):
     engine.setProperty('rate',174)
     eel.DisplayMessage(text)
     engine.say(text)
+    eel.receiverText(text)
     engine.runAndWait()
 
 def takecommand():
@@ -36,9 +37,15 @@ def takecommand():
 
 @eel.expose
 def allCommands():
-    try:        
+
+    if message ==1: # pyright: ignore[reportUndefinedVariable]
         query=takecommand()
         print(query)
+        eel.senderText(query)
+    else:
+        query=message # pyright: ignore[reportUndefinedVariable]
+        eel.senderText(query)
+    try:        
         if "open" in query:
             from engine.features import openCommand
             openCommand(query)
